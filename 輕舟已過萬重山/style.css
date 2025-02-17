@@ -2,9 +2,13 @@ body
 {
     font-family: 'Poppins', 'LXGW WenKai TC', Arial, sans-serif;
 
+    overflow-x: hidden;
+    overflow-y: hidden;
+
     margin: 0;
     padding: 0;
 
+    user-select: none;
     text-align: center;
 
     color: #49475b;
