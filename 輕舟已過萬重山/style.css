@@ -1,0 +1,231 @@
+body
+{
+    font-family: 'Poppins', 'LXGW WenKai TC', Arial, sans-serif;
+
+    margin: 0;
+    padding: 0;
+
+    text-align: center;
+
+    color: #49475b;
+    background-color: #ede6e3;
+}
+
+#timer
+{
+    font-family: 'Ubuntu Sans Mono', monospace;
+    font-weight: 600;
+
+    position: absolute;
+    z-index: 100;
+
+    display: grid;
+
+    width: 100%;
+    height: 100%;
+
+    color: #fff;
+    background: #000;
+
+    place-items: center;
+}
+
+#timer #date
+{
+    font-size: 80px;
+
+    margin: 0;
+}
+
+#timer #time
+{
+    font-size: 160px;
+
+    margin: 0;
+}
+
+#timer #close
+{
+    font-size: 24px;
+
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    width: 20px;
+    height: 20px;
+
+    color: #111;
+    background: none;
+}
+
+main
+{
+    position: absolute;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    width: 100%;
+    height: 100%;
+}
+
+h1.game-title
+{
+    font-size: 48px;
+}
+
+.grid-container
+{
+    display: grid;
+
+    width: fit-content;
+    margin: 20px auto;
+    padding: 10px;
+
+    border-radius: 10px;
+    background: #acc196;
+
+    grid-template-columns: repeat(5, 150px); /* 40px for the leftmost header, 80px for the rest */
+    grid-template-rows: repeat(6, 80px); /* 40px for the topmost header, 80px for the rest */
+    gap: 2px;
+}
+.cell
+{
+    font-size: 28px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 150px;
+    height: 80px;
+
+    border: 1px solid black;
+    background: white;
+}
+.header
+{
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #e9eb9e;
+}
+.marker
+{
+    position: absolute;
+
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50%;
+}
+.teamA
+{
+    background-color: red;
+}
+.teamB
+{
+    background-color: blue;
+}
+.controls
+{
+    display: flex;
+    justify-content: center;
+
+    margin-top: 20px;
+
+    gap: 50px;
+}
+.team-controls
+{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.buttons
+{
+    display: grid;
+    align-items: center;
+
+    grid-template-columns: 50px 50px 50px;
+    grid-template-rows: 50px 50px;
+    gap: 5px;
+    justify-items: center;
+}
+
+button
+{
+    font-size: 28px;
+    font-weight: 800;
+
+    width: 50px;
+    height: 50px;
+
+    cursor: pointer;
+    transition: transform 200ms; /* Specify only transform for transition */
+    /* Ensure the transform origin is set to the center */
+    transform-origin: center;
+
+    border: none;
+    border-radius: 50%;
+    outline: none;
+}
+
+.team-controls:first-child .buttons button
+{
+    background: radial-gradient(rgba(255, 255, 255, .5) 40%, rgba(255, 0, 0, .5));
+}
+
+.team-controls:last-child .buttons button
+{
+    background: radial-gradient(rgba(255, 255, 255, .5) 40%, rgba(0, 0, 255, .5));
+}
+
+.up
+{
+    grid-column: 2;
+    grid-row: 1;
+}
+.left
+{
+    grid-column: 1;
+    grid-row: 2;
+}
+.right
+{
+    grid-column: 3;
+    grid-row: 2;
+}
+.down
+{
+    grid-column: 2;
+    grid-row: 3;
+}
+
+/* Define hover effects */
+.up:hover
+{
+    transform: scale(1.1) translateY(-5px);
+}
+
+.down:hover
+{
+    transform: scale(1.1) translateY(5px);
+}
+
+.left:hover
+{
+    transform: scale(1.1) translateX(-5px);
+}
+
+.right:hover
+{
+    transform: scale(1.1) translateX(5px);
+}
