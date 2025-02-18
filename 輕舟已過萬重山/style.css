@@ -63,6 +63,26 @@ body
     background: none;
 }
 
+#timer_MAIN
+{
+    font-family: 'Ubuntu Sans Mono', monospace;
+    font-weight: 600;
+}
+
+#timer_MAIN #date_MAIN
+{
+    font-size: 50px;
+
+    margin: 0;
+}
+
+#timer_MAIN #time_MAIN
+{
+    font-size: 100px;
+
+    margin: 0;
+}
+
 main
 {
     position: absolute;
