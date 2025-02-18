@@ -1,56 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sacramento&family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap');
-    </style>
-    <script src="script.js" defer></script>
-    <title>YU15：輕舟已過萬重山</title>
-</head>
-<body>
-    <div id="timer">
-        <div>
-            <p style="font-size: 30px; margin: 0;">YU15：輕舟已過萬重山</p>
-            <p id="date"></p>
-            <p id="time"></p>
-            <button id="close">X</button>
-        </div>
-    </div>
-    <main>
-        <div class="L">
-            <h1 class="game-title">YU15：輕舟已過萬重山</h1>
-            <div class="grid-container" id="grid">
-                <!-- Grid cells will be generated here -->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sacramento&family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap');
+        </style>
+        <script src="script.js" defer></script>
+        <title>YU15：輕舟已過萬重山</title>
+    </head>
+    <body>
+        <div id="timer">
+            <div>
+                <p style="font-size: 30px; margin: 0;">YU15：輕舟已過萬重山</p>
+                <p id="date"></p>
+                <p id="time"></p>
+                <button id="close">X</button>
             </div>
         </div>
-        <div class="R">
-            <div class="controls">
-                <!-- Team A Controls -->
-                <div class="team-controls">
-                    <h2>Team A (Red)</h2>
-                    <div class="buttons">
-                        <button class="up" onclick="move('A', 'up')">↑</button>
-                        <button class="left" onclick="move('A', 'left')">←</button>
-                        <button class="right" onclick="move('A', 'right')">→</button>
-                        <button class="down" onclick="move('A', 'down')">↓</button>
+        <main>
+            <div class="L">
+                <h1 class="game-title">YU15：輕舟已過萬重山</h1>
+                <div class="grid-container" id="grid">
+                    <!-- Grid cells will be generated here -->
+                </div>
+            </div>
+            <div class="R">
+                <div id="timer_MAIN">
+                    <div>
+                        <p id="date_MAIN"></p>
+                        <p id="time_MAIN"></p>
                     </div>
                 </div>
-        
-                <!-- Team B Controls -->
-                <div class="team-controls">
-                    <h2>Team B (Blue)</h2>
-                    <div class="buttons">
-                        <button class="up" onclick="move('B', 'up')">↑</button>
-                        <button class="left" onclick="move('B', 'left')">←</button>
-                        <button class="right" onclick="move('B', 'right')">→</button>
-                        <button class="down" onclick="move('B', 'down')">↓</button>
+                <div class="controls">
+                    <!-- Team A Controls -->
+                    <div class="team-controls">
+                        <h2>Team A (Red)</h2>
+                        <div class="buttons">
+                            <button class="up" onclick="move('A', 'up')">↑</button>
+                            <button class="left" onclick="move('A', 'left')">←</button>
+                            <button class="right" onclick="move('A', 'right')">→</button>
+                            <button class="down" onclick="move('A', 'down')">↓</button>
+                        </div>
+                    </div>
+            
+                    <!-- Team B Controls -->
+                    <div class="team-controls">
+                        <h2>Team B (Blue)</h2>
+                        <div class="buttons">
+                            <button class="up" onclick="move('B', 'up')">↑</button>
+                            <button class="left" onclick="move('B', 'left')">←</button>
+                            <button class="right" onclick="move('B', 'right')">→</button>
+                            <button class="down" onclick="move('B', 'down')">↓</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </main>
-</body>
+        </main>
+    </body>
 </html>
