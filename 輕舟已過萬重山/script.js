@@ -109,8 +109,21 @@ function updateTime() {
     document.getElementById('time').innerText = formattedTime;
 }
 
+function updateTime_MAIN() {
+    const now = new Date();
+    const optionsDate = { year: 'numeric', month: 'long', day: 'numeric' };
+    const optionsTime = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+
+    const formattedDate = now.toLocaleDateString('en-GB', optionsDate);
+    const formattedTime = now.toLocaleTimeString('en-GB', optionsTime);
+
+    document.getElementById('date_MAIN').innerText = formattedDate;
+    document.getElementById('time_MAIN').innerText = formattedTime;
+}
+
 updateTime(); // Initial call to display the time immediately
 setInterval(updateTime, 1000); // Update every second
+setInterval(updateTime_MAIN, 1000);
 
 document.getElementById('close').onclick = function() {
     document.getElementById('timer').remove()
