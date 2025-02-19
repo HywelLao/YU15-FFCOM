@@ -1,3 +1,8 @@
+button:disabled
+{
+    cursor: default;
+}
+
 body
 {
     font-family: 'Poppins', 'LXGW WenKai TC', Arial, sans-serif;
@@ -63,26 +68,6 @@ body
     background: none;
 }
 
-#timer_MAIN
-{
-    font-family: 'Ubuntu Sans Mono', monospace;
-    font-weight: 600;
-}
-
-#timer_MAIN #date_MAIN
-{
-    font-size: 50px;
-
-    margin: 0;
-}
-
-#timer_MAIN #time_MAIN
-{
-    font-size: 100px;
-
-    margin: 0;
-}
-
 main
 {
     position: absolute;
@@ -111,10 +96,11 @@ h1.game-title
     border-radius: 10px;
     background: #acc196;
 
-    grid-template-columns: repeat(5, 150px); /* 40px for the leftmost header, 80px for the rest */
-    grid-template-rows: repeat(6, 80px); /* 40px for the topmost header, 80px for the rest */
+    grid-template-columns: repeat(5, 150px);
+    grid-template-rows: repeat(6, 80px);
     gap: 2px;
 }
+
 .cell
 {
     font-size: 28px;
@@ -131,6 +117,7 @@ h1.game-title
     border: 1px solid black;
     background: white;
 }
+
 .header
 {
     font-weight: bold;
@@ -141,6 +128,7 @@ h1.game-title
 
     background: #e9eb9e;
 }
+
 .marker
 {
     position: absolute;
@@ -148,16 +136,150 @@ h1.game-title
     width: 30px;
     height: 30px;
 
+    cursor: pointer;
+    transition: 200ms;
+
     border-radius: 50%;
 }
+
+.marker:hover
+{
+    transform: scale(1.1);
+}
+
 .teamA
 {
-    background-color: red;
+    background-color: #d95065;
 }
+
 .teamB
 {
-    background-color: blue;
+    background-color: #03a7ff;
 }
+
+#stopwatch
+{
+    font-family: 'Ubuntu Sans Mono', monospace;
+    font-weight: 600;
+}
+
+#stopwatch #timeDisplay
+{
+    font-size: 60px;
+
+    margin: 0;
+}
+
+#stopwatch input
+{
+    font-family: 'Ubuntu Sans Mono', monospace;
+    font-size: 32px;
+
+    width: 100%;
+    height: 40px;
+
+    text-align: center;
+
+    color: #49475b;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+#stopwatch input::placeholder
+{
+    font-size: 24px;
+    font-style: italic;
+
+    text-align: left;
+}
+
+#stopwatch .stopwatch-buttons
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    width: 100%;
+}
+
+#stopwatch .stopwatch-buttons button
+{
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+
+    width: 120px;
+    height: 50px;
+
+    transition: 200ms;
+
+    border-radius: 10px;
+}
+
+#stopwatch .stopwatch-buttons #startBtn
+{
+    background: #acc196;
+}
+
+#stopwatch .stopwatch-buttons #pauseBtn
+{
+    background: #ebd278;
+}
+
+#stopwatch .stopwatch-buttons #resetBtn
+{
+    background: #e0a292;
+}
+
+#stopwatch .stopwatch-buttons button:hover
+{
+    transform: scale(1.05) translateY(-3px);
+
+    box-shadow: 0 2px 5px #666;
+}
+
+#pop-up
+{
+    font-size: 56px;
+    font-weight: 600;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    display: grid;
+
+    width: 400px;
+    height: 300px;
+
+    transition: 200ms;
+    transform: translate(-50%, -50%);
+
+    opacity: 0;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, .5);
+
+    backdrop-filter: blur(10px);
+    place-items: center;
+}
+
+#pop-up #closePOPUP
+{
+    font-size: 24px;
+    font-weight: 400;
+
+    position: absolute;
+    top: 5px;
+    right: 5px;
+
+    width: 30px;
+    height: 30px;
+
+    color: #ede6e3;
+    background: #49475b;
+}
+
 .controls
 {
     display: flex;
@@ -167,12 +289,14 @@ h1.game-title
 
     gap: 50px;
 }
+
 .team-controls
 {
     display: flex;
     align-items: center;
     flex-direction: column;
 }
+
 .buttons
 {
     display: grid;
@@ -193,8 +317,7 @@ button
     height: 50px;
 
     cursor: pointer;
-    transition: transform 200ms; /* Specify only transform for transition */
-    /* Ensure the transform origin is set to the center */
+    transition: 200ms;
     transform-origin: center;
 
     border: none;
@@ -204,12 +327,12 @@ button
 
 .team-controls:first-child .buttons button
 {
-    background: radial-gradient(rgba(255, 255, 255, .5) 40%, rgba(255, 0, 0, .5));
+    background: radial-gradient(rgba(255, 255, 255, .5) 40%, #d95065);
 }
 
 .team-controls:last-child .buttons button
 {
-    background: radial-gradient(rgba(255, 255, 255, .5) 40%, rgba(0, 0, 255, .5));
+    background: radial-gradient(rgba(255, 255, 255, .5) 40%, #03a7ff);
 }
 
 .up
@@ -217,39 +340,130 @@ button
     grid-column: 2;
     grid-row: 1;
 }
+
 .left
 {
     grid-column: 1;
     grid-row: 2;
 }
+
 .right
 {
     grid-column: 3;
     grid-row: 2;
 }
+
 .down
 {
     grid-column: 2;
     grid-row: 3;
 }
 
-/* Define hover effects */
 .up:hover
 {
     transform: scale(1.1) translateY(-5px);
+
+    box-shadow: 0 2px 5px #666;
 }
 
 .down:hover
 {
     transform: scale(1.1) translateY(5px);
+
+    box-shadow: 0 2px 5px #666;
 }
 
 .left:hover
 {
     transform: scale(1.1) translateX(-5px);
+
+    box-shadow: 0 2px 5px #666;
 }
 
 .right:hover
 {
     transform: scale(1.1) translateX(5px);
+
+    box-shadow: 0 2px 5px #666;
+}
+
+.scoring-system
+{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+
+    margin-top: 40px;
+}
+
+.team-scores
+{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.displayed-score
+{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.displayed-score div
+{
+    font-family: 'Ubuntu Sans Mono', monospace;
+    font-size: 40px;
+
+    display: grid;
+
+    width: 40px;
+    height: 70px;
+    margin: 2px;
+
+    border-radius: 5px;
+
+    place-items: center;
+}
+
+.teamA-displayed-score div
+{
+    background: linear-gradient(135deg, #d95065 10%, #fff 10%, #fff 90%, #d95065 90%);
+}
+
+.teamB-displayed-score div
+{
+    background: linear-gradient(135deg, #03a7ff 10%, #fff 10%, #fff 90%, #03a7ff 90%);
+}
+
+.team-buttons
+{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.team-buttons button
+{
+    font-size: 24px;
+
+    width: 33px;
+    height: 33px;
+    margin: 2px;
+
+    border-radius: 5px;
+}
+
+.team-buttons button:first-child
+{
+    background: #acc196;
+}
+
+.team-buttons button:last-child
+{
+    background: #e0a292;
 }
