@@ -16,7 +16,7 @@
                 <p style="font-size: 30px; margin: 0;">YU15：輕舟已過萬重山</p>
                 <p id="date"></p>
                 <p id="time"></p>
-                <button id="close">X</button>
+                <button id="close">×</button>
             </div>
         </div>
         <main>
@@ -27,14 +27,20 @@
                 </div>
             </div>
             <div class="R">
-                <div id="timer_MAIN">
-                    <div>
-                        <p id="date_MAIN"></p>
-                        <p id="time_MAIN"></p>
+                <div id="stopwatch">
+                    <div id="timeDisplay">00:00:00</div>
+                    <input type="number" id="setTime" placeholder="Set time (seconds)" min="0" max="215999" value="480"/>
+                    <div class="stopwatch-buttons">
+                        <button id="startBtn">Start</button>
+                        <button id="pauseBtn" disabled>Pause</button>
+                        <button id="resetBtn" disabled>Reset</button>
                     </div>
                 </div>
+                <div id="pop-up">
+                    <button id="closePOPUP" disabled>×</button>
+                    <h2>時間到！</h2>
+                </div>
                 <div class="controls">
-                    <!-- Team A Controls -->
                     <div class="team-controls">
                         <h2>Team A (Red)</h2>
                         <div class="buttons">
@@ -44,8 +50,6 @@
                             <button class="down" onclick="move('A', 'down')">↓</button>
                         </div>
                     </div>
-            
-                    <!-- Team B Controls -->
                     <div class="team-controls">
                         <h2>Team B (Blue)</h2>
                         <div class="buttons">
@@ -53,6 +57,28 @@
                             <button class="left" onclick="move('B', 'left')">←</button>
                             <button class="right" onclick="move('B', 'right')">→</button>
                             <button class="down" onclick="move('B', 'down')">↓</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="scoring-system">
+                    <div class="teamA-scores team-scores">
+                        <div class="displayed-score teamA-displayed-score">
+                            <div class="score A-1">0</div>
+                            <div class="score A-0">0</div>
+                        </div>
+                        <div class="team-buttons teamA-buttons">
+                            <button onclick="updateScore('A', 1)">↑</button>
+                            <button onclick="updateScore('A', -1)">↓</button>
+                        </div>
+                    </div>
+                    <div class="teamB-scores team-scores">
+                        <div class="displayed-score teamB-displayed-score">
+                            <div class="score B-1">0</div>
+                            <div class="score B-0">0</div>
+                        </div>
+                        <div class="team-buttons teamB-buttons">
+                            <button onclick="updateScore('B', 1)">↑</button>
+                            <button onclick="updateScore('B', -1)">↓</button>
                         </div>
                     </div>
                 </div>
