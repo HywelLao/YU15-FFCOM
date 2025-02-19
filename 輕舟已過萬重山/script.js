@@ -1,11 +1,9 @@
 const gridSize = { rows: 5, cols: 4 };
 const gridContainer = document.getElementById("grid");
 
-// Team positions
 let teamA = { row: 0, col: 0 };
 let teamB = { row: 4, col: 0 };
 
-// Create the grid dynamically
 function createGrid() {
     gridContainer.innerHTML = "";
     for (let r = -1; r < gridSize.rows; r++) {
@@ -14,19 +12,15 @@ function createGrid() {
             cell.classList.add("cell");
 
             if (r === -1 && c >= 0) {
-                // Top header (A, B, C, D)
                 cell.innerText = String.fromCharCode(65 + c);
                 cell.classList.add("header");
             } else if (c === -1 && r >= 0) {
-                // Left header (1, 2, 3, 4, 5)
                 cell.innerText = r + 1;
                 cell.classList.add("header");
             } else if (r >= 0 && c >= 0) {
-                // Normal grid cell
                 cell.dataset.row = r;
                 cell.dataset.col = c;
 
-                // Mark D3 as the end block
                 if (r === 2 && c === 3) {
                     cell.classList.add("end");
                     cell.innerText = "終點";
@@ -40,7 +34,6 @@ function createGrid() {
     updateMarkers();
 }
 
-// Update team positions on the grid
 function updateMarkers() {
     document.querySelectorAll(".marker").forEach(marker => marker.remove());
 
@@ -54,7 +47,6 @@ function updateMarkers() {
     markerB.classList.add("marker", "teamB");
     teamBCell.appendChild(markerB);
 
-    // Handle overlap scenario
     if (teamA.row === teamB.row && teamA.col === teamB.col) {
         markerA.style.width = "25px";
         markerA.style.height = "25px";
@@ -65,7 +57,6 @@ function updateMarkers() {
         markerB.style.bottom = "4px";
         markerB.style.right = "4px";
     } else {
-        // Reset to original size if not overlapping
         markerA.style.width = "30px";
         markerA.style.height = "30px";
         markerB.style.width = "30px";
@@ -73,7 +64,6 @@ function updateMarkers() {
     }
 }
 
-// Move a team in a specific direction
 function move(team, direction) {
     let teamObj = team === "A" ? teamA : teamB;
 
@@ -94,7 +84,6 @@ function move(team, direction) {
     updateMarkers();
 }
 
-// Initialize the grid
 createGrid();
 
 function updateTime() {
@@ -109,22 +98,93 @@ function updateTime() {
     document.getElementById('time').innerText = formattedTime;
 }
 
-function updateTime_MAIN() {
-    const now = new Date();
-    const optionsDate = { year: 'numeric', month: 'long', day: 'numeric' };
-    const optionsTime = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-
-    const formattedDate = now.toLocaleDateString('en-GB', optionsDate);
-    const formattedTime = now.toLocaleTimeString('en-GB', optionsTime);
-
-    document.getElementById('date_MAIN').innerText = formattedDate;
-    document.getElementById('time_MAIN').innerText = formattedTime;
-}
-
-updateTime(); // Initial call to display the time immediately
-setInterval(updateTime, 1000); // Update every second
-setInterval(updateTime_MAIN, 1000);
+updateTime();
+setInterval(updateTime, 1000);
 
 document.getElementById('close').onclick = function() {
     document.getElementById('timer').remove()
+}
+
+let countdownTime, timerInterval;
+let running = false;
+
+function formatTime(seconds) {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+}
+
+function updateDisplay() {
+    if (countdownTime > 0) {
+        countdownTime--;
+        document.getElementById('timeDisplay').innerText = formatTime(countdownTime);
+    } else {
+        clearInterval(timerInterval);
+        document.getElementById('pop-up').style.opacity = "1";
+        document.getElementById('closePOPUP').disabled = false;
+        resetTimer();
+    }
+}
+
+function resetTimer() {
+    clearInterval(timerInterval);
+    running = false;
+    countdownTime = 0;
+    document.getElementById('timeDisplay').innerText = '00:00:00';
+    document.getElementById('startBtn').disabled = false;
+    document.getElementById('pauseBtn').disabled = true;
+    document.getElementById('resetBtn').disabled = true;
+    document.getElementById('pauseBtn').innerText = 'Pause';
+    document.getElementById('pauseBtn').style.backgroundColor = "#ebd278";
+}
+
+document.getElementById('startBtn').addEventListener('click', function () {
+    if (!running) {
+        const seconds = parseInt(document.getElementById('setTime').value) || 0;
+        countdownTime = seconds;
+        document.getElementById('timeDisplay').innerText = formatTime(countdownTime);
+        timerInterval = setInterval(updateDisplay, 1000);
+        running = true;
+        this.disabled = true;
+        document.getElementById('pauseBtn').disabled = false;
+        document.getElementById('resetBtn').disabled = false;
+    }
+});
+
+document.getElementById('pauseBtn').addEventListener('click', function () {
+    if (running) {
+        clearInterval(timerInterval);
+        running = false;
+        this.innerText = 'Continue';
+        this.style.backgroundColor = "#92cfe0";
+    } else {
+        timerInterval = setInterval(updateDisplay, 1000);
+        running = true;
+        this.innerText = 'Pause';
+        this.style.backgroundColor = "#ebd278";
+    }
+});
+
+document.getElementById('resetBtn').addEventListener('click', resetTimer);
+
+document.getElementById('closePOPUP').onclick = function() {
+    document.getElementById('pop-up').style.opacity = "0";
+    document.getElementById('closePOPUP').disabled = true;
+}
+
+function updateScore(team, change) {
+    const score1 = document.querySelector(`.${team}-1`);
+    const score0 = document.querySelector(`.${team}-0`);
+
+    const currentScore = parseInt(score1.textContent) * 10 + parseInt(score0.textContent);
+
+    const newScore = currentScore + change;
+
+    if (newScore < 0) return;
+    const tens = Math.floor(newScore / 10);
+    const units = newScore % 10;
+
+    score1.textContent = tens;
+    score0.textContent = units;
 }
