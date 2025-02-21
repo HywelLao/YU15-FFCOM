@@ -165,7 +165,7 @@ h1.game-title
 
 #stopwatch #timeDisplay
 {
-    font-size: 60px;
+    font-size: 90px;
 
     margin: 0;
 }
@@ -285,7 +285,7 @@ h1.game-title
     display: flex;
     justify-content: center;
 
-    margin-top: 20px;
+    margin-top: 60px;
 
     gap: 50px;
 }
@@ -385,85 +385,4 @@ button
     transform: scale(1.1) translateX(5px);
 
     box-shadow: 0 2px 5px #666;
-}
-
-.scoring-system
-{
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-around;
-
-    margin-top: 40px;
-}
-
-.team-scores
-{
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.displayed-score
-{
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.displayed-score div
-{
-    font-family: 'Ubuntu Sans Mono', monospace;
-    font-size: 40px;
-
-    display: grid;
-
-    width: 40px;
-    height: 70px;
-    margin: 2px;
-
-    border-radius: 5px;
-
-    place-items: center;
-}
-
-.teamA-displayed-score div
-{
-    background: linear-gradient(135deg, #d95065 10%, #fff 10%, #fff 90%, #d95065 90%);
-}
-
-.teamB-displayed-score div
-{
-    background: linear-gradient(135deg, #03a7ff 10%, #fff 10%, #fff 90%, #03a7ff 90%);
-}
-
-.team-buttons
-{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.team-buttons button
-{
-    font-size: 24px;
-
-    width: 33px;
-    height: 33px;
-    margin: 2px;
-
-    border-radius: 5px;
-}
-
-.team-buttons button:first-child
-{
-    background: #acc196;
-}
-
-.team-buttons button:last-child
-{
-    background: #e0a292;
 }
