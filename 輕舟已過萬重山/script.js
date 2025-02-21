@@ -172,19 +172,3 @@ document.getElementById('closePOPUP').onclick = function() {
     document.getElementById('pop-up').style.opacity = "0";
     document.getElementById('closePOPUP').disabled = true;
 }
-
-function updateScore(team, change) {
-    const score1 = document.querySelector(`.${team}-1`);
-    const score0 = document.querySelector(`.${team}-0`);
-
-    const currentScore = parseInt(score1.textContent) * 10 + parseInt(score0.textContent);
-
-    const newScore = currentScore + change;
-
-    if (newScore < 0) return;
-    const tens = Math.floor(newScore / 10);
-    const units = newScore % 10;
-
-    score1.textContent = tens;
-    score0.textContent = units;
-}
