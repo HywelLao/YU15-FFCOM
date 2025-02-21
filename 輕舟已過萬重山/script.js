@@ -27,6 +27,12 @@ function createGrid() {
                     cell.style.backgroundColor = "#799496";
                     cell.style.color = "#FFFFFF";
                 }
+                if (r === 0 && c === 0) {
+                    cell.style.backgroundColor = "#f0b9c1";
+                }
+                if (r === 4 && c === 0) {
+                    cell.style.backgroundColor = "#9adcff";
+                }
             }
             gridContainer.appendChild(cell);
         }
@@ -84,6 +90,52 @@ function move(team, direction) {
     updateMarkers();
 }
 
+document.addEventListener('keydown', function(event) {
+    const inputField = document.getElementById('setTime');
+
+    // Prevent keydown handling if the input field is focused
+    if (inputField === document.activeElement || document.getElementById('timer')) {
+        return;
+    }
+
+    switch (event.key) {
+        // WASD keys for Player A
+        case 'w':
+        case 'W':
+            move("A", "up");
+            break;
+        case 'a':
+        case 'A':
+            move("A", "left");
+            break;
+        case 's':
+        case 'S':
+            move("A", "down");
+            break;
+        case 'd':
+        case 'D':
+            move("A", "right");
+            break;
+
+        // Arrow keys for Player B
+        case 'ArrowUp':
+            move("B", "up");
+            break;
+        case 'ArrowLeft':
+            move("B", "left");
+            break;
+        case 'ArrowDown':
+            move("B", "down");
+            break;
+        case 'ArrowRight':
+            move("B", "right");
+            break;
+
+        default:
+            break;
+    }
+});
+
 createGrid();
 
 function updateTime() {
@@ -102,7 +154,7 @@ updateTime();
 setInterval(updateTime, 1000);
 
 document.getElementById('close').onclick = function() {
-    document.getElementById('timer').remove()
+    document.getElementById('timer').remove();
 }
 
 let countdownTime, timerInterval;
